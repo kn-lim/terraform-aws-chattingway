@@ -1,13 +1,7 @@
 formatter: "markdown table"
 
 content: |-
-  ## Examples
-
-  ### slackingway-bot
-
-  ```hcl
-  {{ include "example/slackingway_bot.tf" }}
-  ```
+  ## Example
 
   ### dreamingway-bot
 

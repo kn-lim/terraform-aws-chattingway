@@ -2,83 +2,12 @@
 
 Terraform module to quickly spin up my chat bots.
 
-To use this module, use the following as the source: `github.com/kn-lim/chattingway-terraform`
+To use this module, use the following as the source: `github.com/kn-lim/terraform-aws-chattingway`
 
 Make sure to build the binaries, name it `bootstrap` and compress them into .zip files in order for Terraform to create the resources. This will need to be done only when first applying the module.
 
 <!-- BEGIN_TF_DOCS -->
-## Examples
-
-### slackingway-bot
-
-```hcl
-terraform {
-  required_version = ">= 1.10"
-}
-
-locals {
-  name                     = "slackingway-bot"
-  account_id               = ""
-  debug                    = "false"
-  slack_signing_secret     = ""
-  slack_oauth_token        = ""
-  slack_history_channel_id = ""
-  slack_output_channel_id  = ""
-  admin_role_users         = ""
-
-  # These non-empty .zip files are needed only when creating resources.
-  # Run the build commands and zip the binary files.
-  # The .zip file an be deleted/moved afterwards.
-  endpoint_filename = "/path/to/endpoint.zip"
-  task_filename     = "/path/to/task.zip"
-}
-
-module "slackingway-bot" {
-  # https://github.com/kn-lim/chattingway-terraform
-  source = "github.com/kn-lim/chattingway-terraform?ref=v1.2.0"
-
-  # Required
-
-  account_id        = local.account_id
-  endpoint_filename = local.endpoint_filename
-  task_filename     = local.task_filename
-  endpoint_environment_variables = {
-    ADMIN_ROLE_USERS         = local.admin_role_users
-    DEBUG                    = local.debug
-    SLACK_HISTORY_CHANNEL_ID = local.slack_history_channel_id
-    SLACK_OAUTH_TOKEN        = local.slack_oauth_token
-    SLACK_OUTPUT_CHANNEL_ID  = local.slack_output_channel_id
-    SLACK_SIGNING_SECRET     = local.slack_signing_secret
-    TASK_FUNCTION_NAME       = "${local.name}-task"
-  }
-  task_environment_variables = {
-    DEBUG                    = local.debug
-    SLACK_HISTORY_CHANNEL_ID = local.slack_history_channel_id
-    SLACK_OAUTH_TOKEN        = local.slack_oauth_token
-    SLACK_OUTPUT_CHANNEL_ID  = local.slack_output_channel_id
-    SLACK_SIGNING_SECRET     = local.slack_signing_secret
-  }
-
-  # Optional
-
-  # name              = local.name
-  log_format = "Text"
-  # region            = "us-west-2"
-  # retention_in_days = 3
-  # runtime           = "provided.al2023"
-  # endpoint_timeout  = 3
-  # task_timeout      = 300
-  # ec2_instance_arns = []
-  # tags = {
-  #   App = local.name
-  # }
-}
-
-output "api_endpoint" {
-  description = "The endpoint for the API Gateway"
-  value       = module.slackingway-bot.api_endpoint
-}
-```
+## Example
 
 ### dreamingway-bot
 
@@ -105,7 +34,7 @@ locals {
 
 module "dreamingway-bot" {
   # https://github.com/kn-lim/chattingway-terraform
-  source = "github.com/kn-lim/chattingway-terraform?ref=v1.2.0"
+  source = "github.com/kn-lim/chattingway-terraform?ref=v1.2.1"
 
   # Required
 
@@ -150,20 +79,20 @@ output "api_endpoint" {
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 6.0 |
 
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_api_gateway_deployment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment) | resource |
 | [aws_api_gateway_integration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_integration) | resource |
 | [aws_api_gateway_method.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method) | resource |
@@ -188,7 +117,7 @@ output "api_endpoint" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | The AWS account ID | `string` | n/a | yes |
 | <a name="input_ec2_instance_arns"></a> [ec2\_instance\_arns](#input\_ec2\_instance\_arns) | A list of EC2 instance ARNs to manage | `list(string)` | `[]` | no |
 | <a name="input_endpoint_environment_variables"></a> [endpoint\_environment\_variables](#input\_endpoint\_environment\_variables) | A map of environment variables to apply to the Endpoint Lambda function | `map(string)` | n/a | yes |
@@ -207,7 +136,7 @@ output "api_endpoint" {
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_api_endpoint"></a> [api\_endpoint](#output\_api\_endpoint) | The endpoint for the API Gateway |
 | <a name="output_endpoint_function_arn"></a> [endpoint\_function\_arn](#output\_endpoint\_function\_arn) | The ARN of the Endpoint Lambda function |
 | <a name="output_task_function_arn"></a> [task\_function\_arn](#output\_task\_function\_arn) | The ARN of the Task Lambda function |
