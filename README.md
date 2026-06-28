@@ -80,39 +80,40 @@ output "api_endpoint" {
 
 | Name | Version |
 | ---- | ------- |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 6.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.52.0 |
 
 ## Requirements
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.52.0 |
 
 ## Resources
 
 | Name | Type |
 | ---- | ---- |
-| [aws_api_gateway_deployment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_deployment) | resource |
-| [aws_api_gateway_integration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_integration) | resource |
-| [aws_api_gateway_method.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method) | resource |
-| [aws_api_gateway_resource.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource) | resource |
-| [aws_api_gateway_rest_api.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_rest_api) | resource |
-| [aws_api_gateway_stage.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage) | resource |
-| [aws_cloudwatch_log_group.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
-| [aws_cloudwatch_log_group.task](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
-| [aws_iam_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_role.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role.task](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy.invoke](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy.manage_ec2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
-| [aws_iam_role_policy_attachment.lambda_logs_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.lambda_logs_task](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_lambda_function.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
-| [aws_lambda_function.task](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
-| [aws_lambda_permission.api_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
-| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.lambda_logging](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_api_gateway_deployment.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_deployment) | resource |
+| [aws_api_gateway_integration.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_integration) | resource |
+| [aws_api_gateway_method.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_method) | resource |
+| [aws_api_gateway_resource.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_resource) | resource |
+| [aws_api_gateway_rest_api.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_rest_api) | resource |
+| [aws_api_gateway_stage.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/api_gateway_stage) | resource |
+| [aws_cloudwatch_log_group.endpoint](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/cloudwatch_log_group) | resource |
+| [aws_cloudwatch_log_group.task](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/cloudwatch_log_group) | resource |
+| [aws_iam_policy.this](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_policy) | resource |
+| [aws_iam_role.endpoint](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role) | resource |
+| [aws_iam_role.task](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.invoke](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy.manage_ec2](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy_attachment.lambda_logs_endpoint](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.lambda_logs_task](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_lambda_function.endpoint](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/lambda_function) | resource |
+| [aws_lambda_function.task](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/lambda_function) | resource |
+| [aws_lambda_permission.api_gateway](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/resources/lambda_permission) | resource |
+| [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.lambda_logging](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/6.52.0/docs/data-sources/region) | data source |
 
 ## Inputs
 
@@ -125,10 +126,8 @@ output "api_endpoint" {
 | <a name="input_endpoint_timeout"></a> [endpoint\_timeout](#input\_endpoint\_timeout) | The timeout for the Endpoint Lambda function | `number` | `3` | no |
 | <a name="input_log_format"></a> [log\_format](#input\_log\_format) | The log format for the CloudWatch logs | `string` | `"JSON"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the resources | `string` | `"chattingway"` | no |
-| <a name="input_region"></a> [region](#input\_region) | The region in which the resources will be created | `string` | `"us-west-2"` | no |
 | <a name="input_retention_in_days"></a> [retention\_in\_days](#input\_retention\_in\_days) | The number of days to retain logs in CloudWatch | `number` | `3` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | The runtime for the Lambda functions | `string` | `"provided.al2023"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to apply to the resources | `map(string)` | <pre>{<br/>  "App": "chattingway"<br/>}</pre> | no |
 | <a name="input_task_environment_variables"></a> [task\_environment\_variables](#input\_task\_environment\_variables) | A map of environment variables to apply to the Task Lambda function | `map(string)` | n/a | yes |
 | <a name="input_task_filename"></a> [task\_filename](#input\_task\_filename) | The filename to upload to the Task Lambda function | `string` | n/a | yes |
 | <a name="input_task_timeout"></a> [task\_timeout](#input\_task\_timeout) | The timeout for the Task Lambda function | `number` | `300` | no |

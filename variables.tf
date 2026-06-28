@@ -1,9 +1,3 @@
-variable "region" {
-  description = "The region in which the resources will be created"
-  type        = string
-  default     = "us-west-2"
-}
-
 variable "account_id" {
   description = "The AWS account ID"
   type        = string
@@ -65,14 +59,6 @@ variable "task_environment_variables" {
   description = "A map of environment variables to apply to the Task Lambda function"
   type        = map(string)
   sensitive   = true
-}
-
-variable "tags" {
-  description = "A map of tags to apply to the resources"
-  type        = map(string)
-  default = {
-    App = "chattingway"
-  }
 }
 
 variable "ec2_instance_arns" {

@@ -4,6 +4,7 @@ resource "aws_lambda_function" "endpoint" {
   role          = aws_iam_role.endpoint.arn
   handler       = "hello.handler" # Not used
   runtime       = var.runtime
+  architectures = ["arm64"]
   timeout       = var.endpoint_timeout
 
   environment {
@@ -24,6 +25,7 @@ resource "aws_lambda_function" "task" {
   role          = aws_iam_role.task.arn
   handler       = "hello.handler" # Not used
   runtime       = var.runtime
+  architectures = ["arm64"]
   timeout       = var.task_timeout
 
   environment {
@@ -45,5 +47,5 @@ resource "aws_lambda_permission" "api_gateway" {
   principal     = "apigateway.amazonaws.com"
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.this.id}/*/${aws_api_gateway_method.this.http_method}${aws_api_gateway_resource.this.path}"
+  source_arn = "arn:aws:execute-api:${data.aws_region.current.region}:${var.account_id}:${aws_api_gateway_rest_api.this.id}/*/${aws_api_gateway_method.this.http_method}${aws_api_gateway_resource.this.path}"
 }
