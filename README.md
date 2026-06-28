@@ -1,5 +1,8 @@
 # terraform-aws-chattingway
 
+![GitHub Workflow Status - Release](https://img.shields.io/github/actions/workflow/status/kn-lim/terraform-aws-chattingway/release.yaml)
+![License](https://img.shields.io/github/license/kn-lim/chattingway)
+
 Terraform module to quickly spin up my chat bots.
 
 To use this module, use the following as the source: `github.com/kn-lim/terraform-aws-chattingway`
