@@ -4,7 +4,7 @@ terraform {
 
 locals {
   name                       = "dreamingway-bot"
-  account_id                 = ""
+  admin_role_users           = ""
   debug                      = "false"
   discord_api_version        = "10"
   discord_bot_application_id = ""
@@ -19,12 +19,11 @@ locals {
 }
 
 module "dreamingway-bot" {
-  # https://github.com/kn-lim/chattingway-terraform
-  source = "github.com/kn-lim/chattingway-terraform?ref=v1.2.1"
+  # https://github.com/kn-lim/terraform-aws-chattingway
+  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.0.0"
 
   # Required
 
-  account_id        = local.account_id
   endpoint_filename = local.endpoint_filename
   task_filename     = local.task_filename
   endpoint_environment_variables = {
@@ -45,7 +44,6 @@ module "dreamingway-bot" {
 
   # name              = local.name
   # log_format        = "JSON"
-  # region            = "us-west-2"
   # retention_in_days = 3
   # runtime           = "provided.al2023"
   # endpoint_timeout  = 3

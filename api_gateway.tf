@@ -1,42 +1,25 @@
-resource "aws_api_gateway_rest_api" "this" {
-  name        = "${var.name}-API"
-  description = "API Gateway for ${var.name}"
-}
+module "apigateway" {
+  source  = "terraform-aws-modules/apigateway-v2/aws"
+  version = "6.1.0"
 
-resource "aws_api_gateway_resource" "this" {
-  rest_api_id = aws_api_gateway_rest_api.this.id
-  parent_id   = aws_api_gateway_rest_api.this.root_resource_id
-  path_part   = var.name
-}
+  name          = "${var.name}-apigateway"
+  description   = "API Gateway for ${var.name}"
+  protocol_type = "HTTP"
 
-resource "aws_api_gateway_method" "this" {
-  rest_api_id   = aws_api_gateway_rest_api.this.id
-  resource_id   = aws_api_gateway_resource.this.id
-  http_method   = "ANY"
-  authorization = "NONE"
-}
+  create_domain_name = false
 
-resource "aws_api_gateway_integration" "this" {
-  rest_api_id             = aws_api_gateway_rest_api.this.id
-  resource_id             = aws_api_gateway_resource.this.id
-  http_method             = aws_api_gateway_method.this.http_method
-  integration_http_method = "POST"
-  type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.endpoint.invoke_arn
-}
-
-resource "aws_api_gateway_deployment" "this" {
-  rest_api_id = aws_api_gateway_rest_api.this.id
-
-  depends_on = [aws_api_gateway_method.this, aws_api_gateway_integration.this]
-
-  lifecycle {
-    create_before_destroy = true
+  stage_access_log_settings = {
+    log_group_retention_in_days = var.retention_in_days
   }
-}
 
-resource "aws_api_gateway_stage" "this" {
-  deployment_id = aws_api_gateway_deployment.this.id
-  rest_api_id   = aws_api_gateway_rest_api.this.id
-  stage_name    = "prod"
+  routes = {
+    "POST /" = {
+      integration = {
+        uri                    = module.endpoint.lambda_function_invoke_arn
+        payload_format_version = "2.0"
+      }
+    }
+  }
+
+  tags = var.tags
 }
