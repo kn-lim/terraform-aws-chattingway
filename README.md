@@ -7,7 +7,9 @@ Terraform module to quickly spin up my chat bots.
 
 To use this module, use the following as the source: `github.com/kn-lim/terraform-aws-chattingway`
 
-Make sure to build the binaries, name it `bootstrap` and compress them into .zip files in order for Terraform to create the resources. This will need to be done only when first applying the module.
+This module uses the community supported [terraform-aws-modules](https://github.com/terraform-aws-modules) to create all the AWS resources.
+
+Make sure to build the binaries, name it `bootstrap` and compress them into separate `bootstrap.zip` files. Afterwards, upload the zip files into S3 in order for Terraform to create the resources. This will need to be done only when first applying the module.
 
 <!-- BEGIN_TF_DOCS -->
 ## Example
