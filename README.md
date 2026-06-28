@@ -13,7 +13,7 @@ Make sure to build the binaries, name it `bootstrap` and compress them into .zip
 
 ```hcl
 terraform {
-  required_version = ">= 1.10"
+  required_version = ">= 1.15"
 }
 
 locals {
