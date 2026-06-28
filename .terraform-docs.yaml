@@ -13,6 +13,8 @@ content: |-
 
   {{ .Requirements }}
 
+  {{ .Modules }}
+
   {{ .Resources }}
 
   {{ .Inputs }}
