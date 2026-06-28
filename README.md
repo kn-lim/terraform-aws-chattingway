@@ -25,11 +25,13 @@ locals {
   discord_bot_public_key     = ""
   discord_bot_token          = ""
 
-  # These non-empty .zip files are needed only when creating resources.
-  # Run the build commands and zip the binary files.
-  # The .zip file an be deleted/moved afterwards.
-  endpoint_filename = "/path/to/endpoint.zip"
-  task_filename     = "/path/to/task.zip"
+  # The deployment packages must already exist in S3 at these keys before
+  # applying. Build the binaries, zip them, and upload to the bucket (e.g. via
+  # CI). Lambda code is managed out-of-band, so source code hash changes are
+  # ignored by the module.
+  s3_bucket       = "my-s3-bucket"
+  endpoint_s3_key = "path/to/endpoint/bootstrap.zip"
+  task_s3_key     = "path/to/task/bootstrap.zip"
 }
 
 module "dreamingway-bot" {
@@ -38,8 +40,9 @@ module "dreamingway-bot" {
 
   # Required
 
-  endpoint_filename = local.endpoint_filename
-  task_filename     = local.task_filename
+  s3_bucket       = local.s3_bucket
+  endpoint_s3_key = local.endpoint_s3_key
+  task_s3_key     = local.task_s3_key
   endpoint_environment_variables = {
     ADMIN_ROLE_USERS           = local.admin_role_users
     DEBUG                      = local.debug
@@ -107,15 +110,16 @@ output "api_endpoint" {
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_ec2_instance_arns"></a> [ec2\_instance\_arns](#input\_ec2\_instance\_arns) | A list of EC2 instance ARNs to manage | `list(string)` | `[]` | no |
 | <a name="input_endpoint_environment_variables"></a> [endpoint\_environment\_variables](#input\_endpoint\_environment\_variables) | A map of environment variables to apply to the Endpoint Lambda function | `map(string)` | n/a | yes |
-| <a name="input_endpoint_filename"></a> [endpoint\_filename](#input\_endpoint\_filename) | The filename to upload to the Endpoint Lambda function | `string` | n/a | yes |
+| <a name="input_endpoint_s3_key"></a> [endpoint\_s3\_key](#input\_endpoint\_s3\_key) | S3 object key for the Endpoint Lambda deployment package | `string` | n/a | yes |
 | <a name="input_endpoint_timeout"></a> [endpoint\_timeout](#input\_endpoint\_timeout) | The timeout for the Endpoint Lambda function | `number` | `3` | no |
 | <a name="input_log_format"></a> [log\_format](#input\_log\_format) | The log format for the CloudWatch logs | `string` | `"JSON"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the resources | `string` | `"chattingway"` | no |
 | <a name="input_retention_in_days"></a> [retention\_in\_days](#input\_retention\_in\_days) | The number of days to retain logs in CloudWatch | `number` | `3` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | The runtime for the Lambda functions | `string` | `"provided.al2023"` | no |
+| <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | Name of the S3 bucket holding the Lambda deployment packages | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to apply to all resources | `map(string)` | `{}` | no |
 | <a name="input_task_environment_variables"></a> [task\_environment\_variables](#input\_task\_environment\_variables) | A map of environment variables to apply to the Task Lambda function | `map(string)` | n/a | yes |
-| <a name="input_task_filename"></a> [task\_filename](#input\_task\_filename) | The filename to upload to the Task Lambda function | `string` | n/a | yes |
+| <a name="input_task_s3_key"></a> [task\_s3\_key](#input\_task\_s3\_key) | S3 object key for the Task Lambda deployment package | `string` | n/a | yes |
 | <a name="input_task_timeout"></a> [task\_timeout](#input\_task\_timeout) | The timeout for the Task Lambda function | `number` | `300` | no |
 
 ## Outputs

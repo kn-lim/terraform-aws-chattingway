@@ -11,11 +11,13 @@ locals {
   discord_bot_public_key     = ""
   discord_bot_token          = ""
 
-  # These non-empty .zip files are needed only when creating resources.
-  # Run the build commands and zip the binary files.
-  # The .zip file an be deleted/moved afterwards.
-  endpoint_filename = "/path/to/endpoint.zip"
-  task_filename     = "/path/to/task.zip"
+  # The deployment packages must already exist in S3 at these keys before
+  # applying. Build the binaries, zip them, and upload to the bucket (e.g. via
+  # CI). Lambda code is managed out-of-band, so source code hash changes are
+  # ignored by the module.
+  s3_bucket       = "my-s3-bucket"
+  endpoint_s3_key = "path/to/endpoint/bootstrap.zip"
+  task_s3_key     = "path/to/task/bootstrap.zip"
 }
 
 module "dreamingway-bot" {
@@ -24,8 +26,9 @@ module "dreamingway-bot" {
 
   # Required
 
-  endpoint_filename = local.endpoint_filename
-  task_filename     = local.task_filename
+  s3_bucket       = local.s3_bucket
+  endpoint_s3_key = local.endpoint_s3_key
+  task_s3_key     = local.task_s3_key
   endpoint_environment_variables = {
     ADMIN_ROLE_USERS           = local.admin_role_users
     DEBUG                      = local.debug

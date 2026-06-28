@@ -6,19 +6,24 @@ variable "endpoint_environment_variables" {
   sensitive   = true
 }
 
-variable "endpoint_filename" {
-  description = "The filename to upload to the Endpoint Lambda function"
-  type        = string
-}
-
 variable "task_environment_variables" {
   description = "A map of environment variables to apply to the Task Lambda function"
   type        = map(string)
   sensitive   = true
 }
 
-variable "task_filename" {
-  description = "The filename to upload to the Task Lambda function"
+variable "s3_bucket" {
+  description = "Name of the S3 bucket holding the Lambda deployment packages"
+  type        = string
+}
+
+variable "endpoint_s3_key" {
+  description = "S3 object key for the Endpoint Lambda deployment package"
+  type        = string
+}
+
+variable "task_s3_key" {
+  description = "S3 object key for the Task Lambda deployment package"
   type        = string
 }
 

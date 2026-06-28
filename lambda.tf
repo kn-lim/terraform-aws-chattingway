@@ -9,7 +9,7 @@ module "endpoint" {
   timeout       = var.endpoint_timeout
 
   create_package          = false
-  local_existing_package  = var.endpoint_filename
+  s3_existing_package     = { bucket = var.s3_bucket, key = var.endpoint_s3_key }
   ignore_source_code_hash = true
 
   environment_variables = var.endpoint_environment_variables
@@ -43,7 +43,7 @@ module "task" {
   timeout       = var.task_timeout
 
   create_package          = false
-  local_existing_package  = var.task_filename
+  s3_existing_package     = { bucket = var.s3_bucket, key = var.task_s3_key }
   ignore_source_code_hash = true
 
   environment_variables = var.task_environment_variables
