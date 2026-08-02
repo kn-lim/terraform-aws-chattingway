@@ -3,13 +3,21 @@
 ![GitHub Workflow Status - Release](https://img.shields.io/github/actions/workflow/status/kn-lim/terraform-aws-chattingway/release.yaml)
 ![License](https://img.shields.io/github/license/kn-lim/chattingway)
 
-Terraform module to quickly spin up my chat bots.
+Terraform module to create my chat bots.
 
-To use this module, use the following as the source: `github.com/kn-lim/terraform-aws-chattingway`
+## How to Use
 
-This module uses the community supported [terraform-aws-modules](https://github.com/terraform-aws-modules) to create all the AWS resources.
+To use this module, set the source to `github.com/kn-lim/terraform-aws-chattingway`.
 
-Make sure to build the binaries, name it `bootstrap` and compress them into separate `bootstrap.zip` files. Afterwards, upload the zip files into S3 in order for Terraform to create the resources. This will need to be done only when first applying the module.
+This module uses the community-supported [terraform-aws-modules](https://github.com/terraform-aws-modules) to create the AWS resources.
+
+Do these steps before you apply the module for the first time:
+
+1. Build the **endpoint** and **task** binaries. Name each binary `bootstrap`.
+2. Compress each binary into a separate `bootstrap.zip` file.
+3. Upload the two ZIP files to the S3 bucket.
+
+Terraform reads the deployment packages from S3. It does not build them.
 
 <!-- BEGIN_TF_DOCS -->
 ## Example
@@ -30,10 +38,10 @@ locals {
   discord_bot_public_key     = ""
   discord_bot_token          = ""
 
-  # The deployment packages must already exist in S3 at these keys before
-  # applying. Build the binaries, zip them, and upload to the bucket (e.g. via
-  # CI). Lambda code is managed out-of-band, so source code hash changes are
-  # ignored by the module.
+  # The deployment packages must be in S3 at these keys before you apply the module.
+  # Build the binaries. Compress them into ZIP files. Then upload the ZIP files to the bucket, for example with CI.
+  #
+  # The module ignores changes to the source code hash. You manage the Lambda code outside of Terraform.
   s3_bucket       = "my-s3-bucket"
   endpoint_s3_key = "path/to/endpoint/bootstrap.zip"
   task_s3_key     = "path/to/task/bootstrap.zip"
@@ -77,7 +85,7 @@ module "dreamingway-bot" {
 }
 
 output "api_endpoint" {
-  description = "The endpoint for the API Gateway"
+  description = "The endpoint for the API Gateway."
   value       = module.dreamingway-bot.api_endpoint
 }
 ```
@@ -115,16 +123,16 @@ output "api_endpoint" {
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_ec2_instance_arns"></a> [ec2\_instance\_arns](#input\_ec2\_instance\_arns) | A list of EC2 instance ARNs to manage | `list(string)` | `[]` | no |
 | <a name="input_endpoint_environment_variables"></a> [endpoint\_environment\_variables](#input\_endpoint\_environment\_variables) | A map of environment variables to apply to the Endpoint Lambda function | `map(string)` | n/a | yes |
-| <a name="input_endpoint_s3_key"></a> [endpoint\_s3\_key](#input\_endpoint\_s3\_key) | S3 object key for the Endpoint Lambda deployment package | `string` | n/a | yes |
+| <a name="input_endpoint_s3_key"></a> [endpoint\_s3\_key](#input\_endpoint\_s3\_key) | S3 object key for the deployment package of the Endpoint function | `string` | n/a | yes |
 | <a name="input_endpoint_timeout"></a> [endpoint\_timeout](#input\_endpoint\_timeout) | The timeout for the Endpoint Lambda function | `number` | `3` | no |
 | <a name="input_log_format"></a> [log\_format](#input\_log\_format) | The log format for the CloudWatch logs | `string` | `"JSON"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the resources | `string` | `"chattingway"` | no |
 | <a name="input_retention_in_days"></a> [retention\_in\_days](#input\_retention\_in\_days) | The number of days to retain logs in CloudWatch | `number` | `3` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | The runtime for the Lambda functions | `string` | `"provided.al2023"` | no |
-| <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | Name of the S3 bucket holding the Lambda deployment packages | `string` | n/a | yes |
+| <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | Name of the S3 bucket that contains the Lambda deployment packages | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to apply to all resources | `map(string)` | `{}` | no |
 | <a name="input_task_environment_variables"></a> [task\_environment\_variables](#input\_task\_environment\_variables) | A map of environment variables to apply to the Task Lambda function | `map(string)` | n/a | yes |
-| <a name="input_task_s3_key"></a> [task\_s3\_key](#input\_task\_s3\_key) | S3 object key for the Task Lambda deployment package | `string` | n/a | yes |
+| <a name="input_task_s3_key"></a> [task\_s3\_key](#input\_task\_s3\_key) | S3 object key for the deployment package of the Task function | `string` | n/a | yes |
 | <a name="input_task_timeout"></a> [task\_timeout](#input\_task\_timeout) | The timeout for the Task Lambda function | `number` | `300` | no |
 
 ## Outputs

@@ -13,17 +13,17 @@ variable "task_environment_variables" {
 }
 
 variable "s3_bucket" {
-  description = "Name of the S3 bucket holding the Lambda deployment packages"
+  description = "Name of the S3 bucket that contains the Lambda deployment packages"
   type        = string
 }
 
 variable "endpoint_s3_key" {
-  description = "S3 object key for the Endpoint Lambda deployment package"
+  description = "S3 object key for the deployment package of the Endpoint function"
   type        = string
 }
 
 variable "task_s3_key" {
-  description = "S3 object key for the Task Lambda deployment package"
+  description = "	S3 object key for the deployment package of the Task function"
   type        = string
 }
 

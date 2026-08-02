@@ -11,10 +11,10 @@ locals {
   discord_bot_public_key     = ""
   discord_bot_token          = ""
 
-  # The deployment packages must already exist in S3 at these keys before
-  # applying. Build the binaries, zip them, and upload to the bucket (e.g. via
-  # CI). Lambda code is managed out-of-band, so source code hash changes are
-  # ignored by the module.
+  # The deployment packages must be in S3 at these keys before you apply the module.
+  # Build the binaries. Compress them into ZIP files. Then upload the ZIP files to the bucket, for example with CI.
+  #
+  # The module ignores changes to the source code hash. You manage the Lambda code outside of Terraform.
   s3_bucket       = "my-s3-bucket"
   endpoint_s3_key = "path/to/endpoint/bootstrap.zip"
   task_s3_key     = "path/to/task/bootstrap.zip"
@@ -58,6 +58,6 @@ module "dreamingway-bot" {
 }
 
 output "api_endpoint" {
-  description = "The endpoint for the API Gateway"
+  description = "The endpoint for the API Gateway."
   value       = module.dreamingway-bot.api_endpoint
 }
