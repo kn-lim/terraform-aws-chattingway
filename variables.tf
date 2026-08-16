@@ -35,6 +35,12 @@ variable "ec2_instance_arns" {
   default     = []
 }
 
+variable "enable_counter_table" {
+  description = "Create a DynamoDB table for counters and give the Task Lambda function access to it"
+  type        = bool
+  default     = false
+}
+
 variable "endpoint_timeout" {
   description = "The timeout for the Endpoint Lambda function"
   type        = number

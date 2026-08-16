@@ -5,6 +5,7 @@ terraform {
 locals {
   name                       = "dreamingway-bot"
   admin_role_users           = ""
+  counter_discord_admin_role = ""
   debug                      = "false"
   discord_api_version        = "10"
   discord_bot_application_id = ""
@@ -22,7 +23,7 @@ locals {
 
 module "dreamingway-bot" {
   # https://github.com/kn-lim/terraform-aws-chattingway
-  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.1.0"
+  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.3.0"
 
   # Required
 
@@ -38,20 +39,23 @@ module "dreamingway-bot" {
     TASK_FUNCTION_NAME         = "${local.name}-task"
   }
   task_environment_variables = {
-    DEBUG               = local.debug
-    DISCORD_API_VERSION = local.discord_api_version
-    DISCORD_BOT_TOKEN   = local.discord_bot_token
+    DEBUG                      = local.debug
+    DISCORD_API_VERSION        = local.discord_api_version
+    DISCORD_BOT_TOKEN          = local.discord_bot_token
+    COUNTER_TABLE_NAME         = "${local.name}-counters"
+    COUNTER_DISCORD_ADMIN_ROLE = local.counter_discord_admin_role
   }
 
   # Optional
 
-  # name              = local.name
-  # log_format        = "JSON"
-  # retention_in_days = 3
-  # runtime           = "provided.al2023"
-  # endpoint_timeout  = 3
-  # task_timeout      = 300
-  # ec2_instance_arns = []
+  name = local.name
+  # log_format            = "JSON"
+  # retention_in_days     = 3
+  # runtime               = "provided.al2023"
+  # endpoint_timeout      = 3
+  # task_timeout          = 300
+  # ec2_instance_arns     = []
+  # enable_counter_table  = true
   # tags = {
   #   App = local.name
   # }

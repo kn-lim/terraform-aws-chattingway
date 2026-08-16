@@ -3,6 +3,11 @@ output "api_endpoint" {
   value       = module.apigateway.api_endpoint
 }
 
+output "counter_table_name" {
+  description = "The name of the DynamoDB table for counters"
+  value       = var.enable_counter_table ? module.counter_table.dynamodb_table_id : null
+}
+
 output "endpoint_function_arn" {
   description = "The ARN of the Endpoint Lambda function"
   value       = module.endpoint.lambda_function_arn

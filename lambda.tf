@@ -51,22 +51,9 @@ module "task" {
   cloudwatch_logs_retention_in_days = var.retention_in_days
   logging_log_format                = var.log_format
 
-  attach_policy_json = length(var.ec2_instance_arns) > 0
-  policy_json = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "ec2:DescribeInstances",
-          "ec2:StartInstances",
-          "ec2:StopInstances",
-          "ec2:RebootInstances",
-        ]
-        Resource = var.ec2_instance_arns
-      }
-    ]
-  })
+  attach_policy_jsons    = length(local.task_policy_jsons) > 0
+  policy_jsons           = local.task_policy_jsons
+  number_of_policy_jsons = length(local.task_policy_jsons)
 
   tags = var.tags
 }
