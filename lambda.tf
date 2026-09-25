@@ -1,6 +1,6 @@
 module "endpoint" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "8.8.0"
+  version = "8.9.0"
 
   function_name = "${var.name}-endpoint"
   handler       = "bootstrap"
@@ -34,7 +34,7 @@ module "endpoint" {
 
 module "task" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "8.8.0"
+  version = "8.9.0"
 
   function_name = "${var.name}-task"
   handler       = "bootstrap"
