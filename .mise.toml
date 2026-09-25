@@ -1,5 +1,5 @@
 [tools]
-"aqua:hashicorp/terraform" = "1.16.2"
+"aqua:hashicorp/terraform" = "1.16.4"
 "aqua:j178/prek" = "0.5.3"
 "aqua:terraform-docs/terraform-docs" = "0.24.0"
 "aqua:terraform-linters/tflint" = "0.64.0"
