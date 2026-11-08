@@ -1,18 +1,29 @@
 {
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>kn-lim/homelab//.renovaterc.json5",
-    "github>kn-lim/homelab//configs/renovate/github-actions.json5"
+    // https://github.com/home-operations/renovate-presets
+    "github>home-operations/renovate-presets#11.0.0",
   ],
-  "packageRules": [
+  schedule: ["every weekend"],
+  "pre-commit": {
+    enabled: true,
+  },
+  packageRules: [
     {
-      "matchManagers": [
-        "terraform"
-      ],
-      "matchFileNames": [
-        "example/**"
-      ],
-      "semanticCommitType": "chore",
-      "groupName": "terraform examples"
-    }
-  ]
+      matchManagers: ["terraform"],
+      matchFileNames: ["example/**"],
+      semanticCommitType: "chore",
+      groupName: "terraform examples",
+    },
+    {
+      matchManagers: ["github-actions"],
+      matchUpdateTypes: ["major"],
+      commitMessagePrefix: "{{semanticCommitType}}({{semanticCommitScope}}):",
+    },
+    {
+      matchManagers: ["mise", "pre-commit"],
+      semanticCommitType: "chore",
+      commitMessagePrefix: "{{semanticCommitType}}({{semanticCommitScope}}):",
+    },
+  ],
 }
