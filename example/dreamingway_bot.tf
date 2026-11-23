@@ -23,7 +23,7 @@ locals {
 
 module "dreamingway-bot" {
   # https://github.com/kn-lim/terraform-aws-chattingway
-  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.4.0" # x-release-please-version
+  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.5.0" # x-release-please-version
 
   # Required
 
