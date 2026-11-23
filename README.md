@@ -1,6 +1,6 @@
 # terraform-aws-chattingway
 
-![GitHub Workflow Status - Release](https://img.shields.io/github/actions/workflow/status/kn-lim/terraform-aws-chattingway/release.yaml)
+![GitHub Workflow Status - Release](https://img.shields.io/github/actions/workflow/status/kn-lim/terraform-aws-chattingway/release-please.yaml)
 ![License](https://img.shields.io/github/license/kn-lim/chattingway)
 
 Terraform module to create my chat bots.
@@ -50,7 +50,7 @@ locals {
 
 module "dreamingway-bot" {
   # https://github.com/kn-lim/terraform-aws-chattingway
-  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.4.0"
+  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.4.0" # x-release-please-version
 
   # Required
 
