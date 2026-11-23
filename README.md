@@ -50,7 +50,7 @@ locals {
 
 module "dreamingway-bot" {
   # https://github.com/kn-lim/terraform-aws-chattingway
-  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.3.0"
+  source = "github.com/kn-lim/terraform-aws-chattingway?ref=v2.4.0"
 
   # Required
 
@@ -98,20 +98,20 @@ output "api_endpoint" {
 
 | Name | Version |
 | ---- | ------- |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.60.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.64.0 |
 
 ## Requirements
 
 | Name | Version |
 | ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.60.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.64.0 |
 
 ## Modules
 
 | Name | Source | Version |
 | ---- | ------ | ------- |
-| <a name="module_apigateway"></a> [apigateway](#module\_apigateway) | terraform-aws-modules/apigateway-v2/aws | 6.1.0 |
+| <a name="module_apigateway"></a> [apigateway](#module\_apigateway) | terraform-aws-modules/apigateway-v2/aws | 6.1.1 |
 | <a name="module_counter_table"></a> [counter\_table](#module\_counter\_table) | terraform-aws-modules/dynamodb-table/aws | 5.5.1 |
 | <a name="module_endpoint"></a> [endpoint](#module\_endpoint) | terraform-aws-modules/lambda/aws | 8.8.0 |
 | <a name="module_task"></a> [task](#module\_task) | terraform-aws-modules/lambda/aws | 8.8.0 |
@@ -120,7 +120,7 @@ output "api_endpoint" {
 
 | Name | Type |
 | ---- | ---- |
-| [aws_lambda_permission.api_gateway](https://registry.terraform.io/providers/hashicorp/aws/6.60.0/docs/resources/lambda_permission) | resource |
+| [aws_lambda_permission.api_gateway](https://registry.terraform.io/providers/hashicorp/aws/6.64.0/docs/resources/lambda_permission) | resource |
 
 ## Inputs
 
